@@ -1,0 +1,30 @@
+Functia add_last
+    Are 2 cazuri: daca vectorul e NULL si trebuie adaugat primul element, sau contrar, iar atunci trebuie calculata
+lungimea lui, si realocata memorie de lungime + sizeof char (pt type) + sizeof int (pt len) - elementele headerului + 
+lungimea datelor ce se adauga. Copierea se realizeaza cu memcpy, ce copiaza bitii in memoria dorita si nu se fac
+legaturi intre pointeri, fapt pentru care se poate elibera memoria lui data_structure(in care aveam informatiile) la
+finalul functiei. Copierea elementelor din header se face pe rand, deoarece sizeof (header) ar avea 8 biti, in loc de 5
+(char + int), din cauza paddingului. Se actualizeaza numarul de elemente al vectorului.
+
+Functia add_at
+    Asemanatoare functiei precedente. Se calculeaza lungimea vectorului si lungimea acestuia pana la elementul cu
+indexul dat. Se realoca memorie (cata era + "lungimea" elementului [header + date]), se muta spre dreapta toate
+elementele de dupa index cu "lungimea acestuia" pozitii (poz *lungimea totala a vectorului* - poz2 *lungimea vectorului
+de pana in index* bytes) si se adauga la (vector + poz2) elementul.
+
+Functia find
+    Calculeaza lungimea vectorului pana la elemntul indexat si apeleaza functia de printare cu parametrii: (adresa
+vectorului + lungimea calculata) si 1 (un singur element).
+
+Functia delete_at
+    Se calculeaza lungimea totala a vectorului si cea pana la elementul dat si se muta spre dreapta elementele de dupa
+el, cu o lungime = lungimea elementului de eliminat. Apoi se realoca memorie, scazandu-se dimensiunea elementului dat.
+
+Functia print
+    Parcurge toate elementele vectorului, iar apoi, in functie de tip, afiseaza variabilele, incrementandu-se adresa
+cu dimensiunea in bytes a acestora. La stringuri se adauga strlen de string +1 pt caracterul NULL.
+
+Functiile de convertire
+    Returneaza un data_structure cu informatiile copiate, in functie de tipul dedicatiei
+La final se dezaloca vectorul si char *-ul in care am citit cerinta. Structurile data_structure sunt dezalocate dupa
+fiecare inserare in vector.
